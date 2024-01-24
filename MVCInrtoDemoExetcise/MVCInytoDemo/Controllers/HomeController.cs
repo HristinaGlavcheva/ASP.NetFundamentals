@@ -15,7 +15,7 @@ namespace MVCInytoDemo.Controllers
 
         public IActionResult Index()
         {
-            this.ViewBag.Message = "Hello World!";
+            ViewBag.Message = "Hello World!";
             
             return View();
         }
@@ -29,6 +29,13 @@ namespace MVCInytoDemo.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult About()
+        {
+            ViewBag.Message = "This is an ASP.NET Core MVC app.";
+
+            return View();
         }
     }
 }
