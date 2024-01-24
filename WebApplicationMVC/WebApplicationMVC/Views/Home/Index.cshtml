@@ -1,0 +1,71 @@
+﻿@using WebApplicationMVC.ViewModels.Home
+@using WebApplicationMVC.Services
+@model IndexViewModel
+@inject IShortStringService ShortStringService
+@{
+    //ViewData["Title"] = "Welcome Page!";
+    //this.Layout = "_MyNewLayout";
+}
+
+<partial name="_HomePageStart" model=@Model.Description />
+
+<form asp-action="Index">
+    <input asp-for="Year"/>
+    <textarea asp-for="Description"></textarea>
+    <input asp-for="Name"/>
+    <input asp-for="ProcessorsCount"/>
+</form>
+
+<table bootstrap-table="" table-name="Digits table">
+    @for (int i = 0; i < 5; i++)
+    {
+        //Comment
+        <tr>
+            <td>
+                @i
+            </td>
+        </tr>
+    }
+</table>
+<div class="text-center">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1 class="display-4">Welcome, @User.Identity.Name</h1> 
+    }
+    else
+    {
+        <h1 class="display-4">Welcome, @Model.Name</h1>
+    }
+    @*<h1 class="display-4">Welcome, @Html.Raw(Model.Name)</h1> //Sanitizer*@
+    <h1>It is @Model.Year year.</h1>
+    <p>Description: @ShortStringService.GetShort(Model.Description, 200)</p>
+    <p>We have @Model.UsersCount users.</p>
+    <p>ProcessorsCount: @Model.ProcessorsCount</p>
+    <p>Time: @DateTime.Now</p>
+    <p>Id: @Model.Id</p>
+    <p>Username: @this.User.Identity.Name</p>
+    <!--Html Comment-->
+    @*Comment not to be seen*@
+
+
+    <h1 class="display-4">Welcome, @ViewData["Name"]</h1>
+    <h1>It is @ViewData["Year"]</h1>
+    <p>We have @ViewData["UsersCount"] users.</p>
+    <p>ProcessorsCount: @Environment.ProcessorCount</p>
+    <p>Username: @this.User.Identity.Name</p>
+
+    <h1>Welcome, @ViewBag.Name</h1>
+    <h1>It is @ViewBag.Year</h1>
+    <p>We have @ViewBag.UsersCount users.</p>
+    <p>Calculated result: @ViewBag.Calc()</p>
+
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+List&lt;string&gt;
+
+@section Links{
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="https://google.com">Google</a>
+    </li>
+} 

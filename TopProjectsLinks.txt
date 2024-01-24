@@ -1,0 +1,39 @@
+Привет,
+🥳
+Споделям един дълъг лист с проектите, който всеки квестор избра, като най-добри.
+Не са подредени от най-добър към най-слаб. Всеки проект има забележки и знаем, че няма перфектни неща.
+Сега подготвяме и блог статия, където ще видите инфо от авторите и снимки на проекта. Ако някой си вижда проекта и не съм му писал, моля да ми изпрати лично съобщение.
+Тази година не са топ 5 преокта, а топ X:
+Симеон Вълев
+Github: https://github.com/indieza/SdvCodeWebsite
+Станислав Стоянов
+Github: https://github.com/stanislavstoyanov99/CinemaWorld
+Станчев Станчев
+Github: https://github.com/astanchev/Personal-Stock-Trader
+Цветомира Даскалова
+Github: https://github.com/miraDask/QuizHut
+Пламен Мичев
+Github: https://github.com/PlamenMichev/SoftGym
+Петко Петков
+Github: https://github.com/BlinkDrink/DogCarePlatform
+Христо Тодоров
+Github: https://github.com/TnS101/FFGoesWeb
+Назиф Исмет
+Github: https://github.com/theoners/NeighbourhoodServices
+Иван Илиев
+Github: https://github.com/ivan-nikolov/HSS
+Александър Сариков
+Github: https://github.com/EnjoyTheFun/Tetraline
+Йотко Кънчев
+Github: https://github.com/yotkoKanchev/LetsSport
+Калин Ценков
+Github: https://github.com/kalintsenkov/ForumNet
+Марина Колова
+Github: https://github.com/marinakolova/BeautyBooking
+Дейвид Ненчев
+Github: https://github.com/deyvidnenchev/vinyl-exchange
+Дарин Русев
+Github: https://github.com/bodyquest/MyWebProject
+Костадин Костадинов
+Github: https://github.com/KostadinovK/Shoplify
+

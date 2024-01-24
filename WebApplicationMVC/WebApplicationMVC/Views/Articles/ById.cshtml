@@ -1,0 +1,18 @@
+﻿@model WebApplicationMVC.Controllers.DataViewModel
+
+<h1>@this.User.Identity.Name</h1>
+<h1>Hello, Tinche :)</h1>
+<h2>Users: @Model.UsersCount</h2>
+<h2>Paremeter: @Model.ParameterValue</h2>
+
+<form method="post">
+    <input name="name" />
+    <input type="submit" />
+</form>
+
+@foreach (var item in Enumerable.Range(0, 100).Where(x => x % 3 == 0))
+{
+    <p>@item</p>
+}
+
+<h1>@this.ViewBag.Test</h1>

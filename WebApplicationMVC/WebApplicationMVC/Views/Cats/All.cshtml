@@ -1,0 +1,19 @@
+﻿@model List<CatViewModel>
+@{ViewData["Cats"] = "Kotkite";}
+
+<h1>All cats:</h1>
+@ViewData["Cats"]
+
+@if (!Model.Any()) 
+{
+    <h2>No cats!</h2>
+}
+
+<ul>
+    @foreach (var cat in Model)
+    {
+        <li>
+            @cat.Name - @cat.Age
+        </li>
+    }
+</ul>
