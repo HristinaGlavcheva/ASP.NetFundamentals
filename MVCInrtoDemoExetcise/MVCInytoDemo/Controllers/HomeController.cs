@@ -15,6 +15,8 @@ namespace MVCInytoDemo.Controllers
 
         public IActionResult Index()
         {
+            this.ViewBag.Message = "Hello World!";
+            
             return View();
         }
 
