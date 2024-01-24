@@ -1,0 +1,26 @@
+﻿@model int
+@{
+    ViewData["Title"] = $"Nums 1...{Model}";
+}
+
+<h2>@ViewData["Title"]</h2>
+@if(Model > 0)
+{
+    <ul>
+        @for (int i = 1; i <= Model; i++)
+        {
+            <li>@i</li>
+        }
+    </ul>
+}
+
+<form asp-controller="Home" asp-action="NumbersToN" method="post">
+    <div class="row">
+        <div class="col-2">
+            <input type="number" value=@Model min="1" step="1" name="count"/>
+        </div>
+        <div class="col-2">
+            <button class="btn-success">Submit</button>
+        </div>
+    </div>
+</form>

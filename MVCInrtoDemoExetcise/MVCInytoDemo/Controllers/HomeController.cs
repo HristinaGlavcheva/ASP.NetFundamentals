@@ -37,5 +37,22 @@ namespace MVCInytoDemo.Controllers
 
             return View();
         }
+
+        public IActionResult Numbers()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [HttpPost]
+        public IActionResult NumbersToN(int count = 3)
+        {
+            if(count <= 0)
+            {
+                return View(1);
+            }
+            
+            return View(count);
+        }
     }
 }
