@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MVCInytoDemo.Models;
+using MVCIntroDemo.Models;
 using System.Diagnostics;
 
-namespace MVCInytoDemo.Controllers
+namespace MVCIntroDemo.Controllers
 {
     public class HomeController : Controller
     {

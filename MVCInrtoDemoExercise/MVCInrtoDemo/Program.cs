@@ -1,4 +1,4 @@
-namespace MVCInytoDemo
+namespace MVCIntroDemo
 {
     public class Program
     {

@@ -1,0 +1,15 @@
+﻿@using MVCIntroDemo.Models.Product
+@model ProductViewModel
+@{
+    ViewData["Title"] = $"Product N. {Model.Id}";
+}
+
+<div class="card col-3">
+    <div class="card-header">
+        @ViewData["Title"]
+    </div>
+    <div class="card-body">
+        <h5>Product Name: @Model.Name</h5>
+        <p>Price: @Model.Price lv.</p>
+    </div>
+</div>
