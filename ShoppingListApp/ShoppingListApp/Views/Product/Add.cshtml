@@ -1,0 +1,27 @@
+﻿@using ShoppingListApp.ViewModels
+@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr/>
+
+<div class="row">
+    <form method="post">
+        <div class="form-group">
+            <div class="mb-3">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" placeholder="Write your product name here..." />
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Create" />
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
