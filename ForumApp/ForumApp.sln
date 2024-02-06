@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumApp", "ForumApp\ForumApp.csproj", "{310E8D8F-2D29-4E8D-8881-777A53935DFE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BB3BC65F-46A6-4074-9929-CF4ADEDDBF3F} = {BB3BC65F-46A6-4074-9929-CF4ADEDDBF3F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumApp.Core", "ForumApp.Core\ForumApp.Core.csproj", "{BB3BC65F-46A6-4074-9929-CF4ADEDDBF3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumApp.Infrastructure", "ForumApp.Infrastructure\ForumApp.Infrastructure.csproj", "{FB8DD26D-75B5-48F5-BC2D-3F266F2B929D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{310E8D8F-2D29-4E8D-8881-777A53935DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{310E8D8F-2D29-4E8D-8881-777A53935DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{310E8D8F-2D29-4E8D-8881-777A53935DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB3BC65F-46A6-4074-9929-CF4ADEDDBF3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3BC65F-46A6-4074-9929-CF4ADEDDBF3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3BC65F-46A6-4074-9929-CF4ADEDDBF3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3BC65F-46A6-4074-9929-CF4ADEDDBF3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB8DD26D-75B5-48F5-BC2D-3F266F2B929D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB8DD26D-75B5-48F5-BC2D-3F266F2B929D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB8DD26D-75B5-48F5-BC2D-3F266F2B929D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB8DD26D-75B5-48F5-BC2D-3F266F2B929D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
