@@ -9,7 +9,7 @@ namespace ForumApp.Infrastructure.Data.Models
     {
         [Key]
         [Comment("Post identifier")]
-        public int MyProperty { get; init; }
+        public int Id { get; init; }
 
         [Required]
         [MaxLength(TitleMaxLength)]

@@ -1,4 +1,5 @@
-﻿using ForumApp.Infrastructure.Data.Models;
+﻿using ForumApp.Infrastructure.Data.Configuration;
+using ForumApp.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ForumApp.Infrastructure.Data
@@ -15,6 +16,8 @@ namespace ForumApp.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new PostConfiguration());
+            
             base.OnModelCreating(modelBuilder);
         }
     }
