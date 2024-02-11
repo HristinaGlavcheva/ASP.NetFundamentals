@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TaskBoardApp.Contracts;
 using TaskBoardApp.Data;
+using TaskBoardApp.Services;
 
 namespace TaskBoardApp
 {
@@ -15,6 +17,8 @@ namespace TaskBoardApp
             builder.Services.AddDbContext<TaskBoardAppDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            builder.Services.AddScoped<IBoardService, BoardService>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options =>
             { 
