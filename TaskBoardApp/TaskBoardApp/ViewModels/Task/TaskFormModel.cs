@@ -1,5 +1,4 @@
-﻿using Humanizer;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static TaskBoardApp.Data.DataConstants;
 
 namespace TaskBoardApp.ViewModels.Task

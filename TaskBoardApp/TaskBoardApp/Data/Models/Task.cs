@@ -19,7 +19,7 @@ namespace TaskBoardApp.Data.Models
 
         public DateTime CreatedOn { get; set; }
 
-        public int? BoardId { get; set; }
+        public int BoardId { get; set; }
 
         public Board? Board { get; set; }
 

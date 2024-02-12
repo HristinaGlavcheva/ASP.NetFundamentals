@@ -19,6 +19,7 @@ namespace TaskBoardApp
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddScoped<IBoardService, BoardService>();
+            builder.Services.AddScoped<ITaskService, TaskService>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options =>
             { 

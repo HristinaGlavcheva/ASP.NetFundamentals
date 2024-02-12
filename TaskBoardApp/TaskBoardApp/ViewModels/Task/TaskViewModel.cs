@@ -20,8 +20,6 @@ namespace TaskBoardApp.ViewModels.Task
         [MinLength(TaskDescriptionMinLength)]
         public string Description { get; set; } = string.Empty;
 
-        public DateTime? CreatedOn { get; set; }
-
         public int? BoardId { get; set; }
 
         [Required]
