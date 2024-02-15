@@ -1,36 +1,15 @@
-﻿using static Homies.Data.DataConstants;
-
-namespace Homies.ViewModels
+﻿namespace Homies.ViewModels
 {
     public class EventsAllViewModel
     {
-        public EventsAllViewModel()
-        {
-            
-        }
+       public int Id { get; set; }
 
-        public EventsAllViewModel(
-            int id,
-            string name,
-            DateTime start,
-            string type,
-            string organiser)
-        {
-            Id = id;
-            Name = name;
-            Start = start.ToString(DateTimeFormat);
-            Type = type;
-            Organiser = organiser;
-        }
+        public string Name { get; set; } = string.Empty;
 
-        public int Id { get; set; }
+        public string Start { get; set; } = string.Empty;
 
-        public string Name { get; set; }
+        public string Type { get; set; } = string.Empty;
 
-        public string Start { get; set; }
-
-        public string Type { get; set; }
-
-        public string Organiser { get; set; }
+        public string Organiser { get; set; } = string.Empty;
     }
 }
