@@ -68,7 +68,7 @@ namespace SoftUniBazar.Areas.Identity.Pages.Account
         {
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("All", "Event");
+                return RedirectToAction("All", "Ad");
             }
 
             if (!string.IsNullOrEmpty(ErrorMessage))

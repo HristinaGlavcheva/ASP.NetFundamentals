@@ -16,7 +16,7 @@ namespace SoftUniBazar.Data.Models
 
         [Required]
         [MaxLength(DescriptionMaxLength)]
-        public string Descripiton { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
         public decimal Price { get; set; }
 

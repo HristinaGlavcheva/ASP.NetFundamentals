@@ -81,7 +81,7 @@ namespace SoftUniBazar.Areas.Identity.Pages.Account
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("All", "Book");
+                return RedirectToAction("All", "Ad");
             }
 
             ReturnUrl = returnUrl;
