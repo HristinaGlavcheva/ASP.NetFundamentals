@@ -70,7 +70,7 @@ namespace SoftUniBazar.Controllers
             await dbContext.Ads.AddAsync(ad);
             await dbContext.SaveChangesAsync();
 
-            return RedirectToAction("All");
+            return RedirectToAction(nameof(All));
         }
 
         [HttpGet]
@@ -101,6 +101,40 @@ namespace SoftUniBazar.Controllers
             model.Categories = await GetCategories();
             
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, AdFormViewModel model)
+        {
+            var ad = await dbContext.Ads
+                .FindAsync(id);
+
+            if(ad == null)
+            {
+                return BadRequest();
+            }
+
+            if(ad.OwnerId != GetUserId())
+            {
+                return Unauthorized();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Categories = await GetCategories();
+
+                return View(model);
+            }
+
+            ad.Name = model.Name;
+            ad.Description = model.Description;
+            ad.ImageUrl = model.ImageUrl;
+            ad.CategoryId = model.CategoryId;
+            ad.Price = model.Price;
+
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(All));
         }
 
         private async Task<IEnumerable<CategoryViewModel>> GetCategories()
