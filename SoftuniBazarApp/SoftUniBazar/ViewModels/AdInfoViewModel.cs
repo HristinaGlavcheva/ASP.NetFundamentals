@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using SoftUniBazar.Data.Models;
-using System.ComponentModel.DataAnnotations;
-
-namespace SoftUniBazar.ViewModels
+﻿namespace SoftUniBazar.ViewModels
 {
     public class AdInfoViewModel
     {

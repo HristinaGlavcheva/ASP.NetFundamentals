@@ -34,7 +34,7 @@ namespace SoftUniBazar.Controllers
                     Owner = a.Owner.UserName,
                     CreatedOn = a.CreatedOn.ToString(DataConstants.DateTimeFormat),
                 }).ToListAsync();
-            
+
             return View(model);
         }
 
@@ -50,7 +50,7 @@ namespace SoftUniBazar.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AdFormViewModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 model.Categories = await GetCategories();
                 return View(model);
@@ -79,12 +79,12 @@ namespace SoftUniBazar.Controllers
             var ad = await dbContext.Ads
                 .FindAsync(id);
 
-            if(ad == null)
+            if (ad == null)
             {
                 return BadRequest();
             }
 
-            if(ad.OwnerId != GetUserId())
+            if (ad.OwnerId != GetUserId())
             {
                 return Unauthorized();
             }
@@ -99,7 +99,7 @@ namespace SoftUniBazar.Controllers
             };
 
             model.Categories = await GetCategories();
-            
+
             return View(model);
         }
 
@@ -109,12 +109,12 @@ namespace SoftUniBazar.Controllers
             var ad = await dbContext.Ads
                 .FindAsync(id);
 
-            if(ad == null)
+            if (ad == null)
             {
                 return BadRequest();
             }
 
-            if(ad.OwnerId != GetUserId())
+            if (ad.OwnerId != GetUserId())
             {
                 return Unauthorized();
             }
@@ -135,6 +135,86 @@ namespace SoftUniBazar.Controllers
             await dbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(All));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(int id)
+        {
+            var ad = await dbContext.Ads
+                .FindAsync(id);
+
+            if (ad == null)
+            {
+                return BadRequest();
+            }
+
+            var adBuyer = new AdBuyer
+            {
+                AdId = ad.Id,
+                BuyerId = GetUserId()
+            };
+
+            if (!await dbContext.AdBuyers.ContainsAsync(adBuyer))
+            {
+                await dbContext.AdBuyers.AddAsync(adBuyer);
+                await dbContext.SaveChangesAsync();
+
+                return RedirectToAction("Cart", "Ad");
+            }
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCart(int id)
+        {
+            var ad = await dbContext.Ads
+                .FindAsync(id);
+
+            if (ad == null)
+            {
+                return BadRequest();
+            }
+
+            var currentUserCart = await dbContext.AdBuyers
+                .Where(ab => ab.BuyerId == GetUserId())
+                .ToListAsync();
+
+            var adBuyerToRemove = await dbContext.AdBuyers
+                .FirstOrDefaultAsync(ab => ab.BuyerId == GetUserId() && ab.AdId == ad.Id);
+
+            if (adBuyerToRemove == null)
+            {
+                return BadRequest();
+            }
+
+            dbContext.AdBuyers.Remove(adBuyerToRemove);
+
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Cart()
+        {
+            var model = await dbContext.AdBuyers
+                .Where(x => x.BuyerId == GetUserId())
+                .AsNoTracking()
+                .Select(ab => new AdInfoViewModel
+                {
+                    Id = ab.AdId,
+                    Name = ab.Ad.Name,
+                    Description = ab.Ad.Description,
+                    CreatedOn = ab.Ad.CreatedOn.ToString(DataConstants.DateTimeFormat),
+                    Price = ab.Ad.Price.ToString(),
+                    Owner = ab.Ad.Owner.UserName,
+                    Category = ab.Ad.Category.Name,
+                    ImageUrl = ab.Ad.ImageUrl
+                })
+                .ToListAsync();
+
+            return View(model);
         }
 
         private async Task<IEnumerable<CategoryViewModel>> GetCategories()

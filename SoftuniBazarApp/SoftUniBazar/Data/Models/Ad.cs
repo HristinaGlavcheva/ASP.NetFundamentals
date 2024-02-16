@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.Options;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using static SoftUniBazar.Data.DataConstants;
 
