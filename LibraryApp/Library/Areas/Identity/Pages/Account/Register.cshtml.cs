@@ -78,15 +78,22 @@ namespace Library.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                return  RedirectToAction("All", "Book");
+            }
+
             ReturnUrl = returnUrl;
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Page(
+                        "/Identity/Account/Login");
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
@@ -99,7 +106,7 @@ namespace Library.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                    return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
                 {

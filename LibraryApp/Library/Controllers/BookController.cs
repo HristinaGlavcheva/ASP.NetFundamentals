@@ -4,6 +4,7 @@ using Library.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Library.Controllers
 {
@@ -23,6 +24,7 @@ namespace Library.Controllers
             var model = await dbContext.Books
                 .Select(b => new BookInfoViewModel
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = b.Author,
                     ImageUrl = b.ImageUrl,
@@ -32,6 +34,82 @@ namespace Library.Controllers
                 .ToListAsync();
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Mine()
+        {
+            var model = await dbContext.ApplicationUserBooks
+                .AsNoTracking()
+                .Where(ab => ab.ApplicationUserId == GetUserId())
+                .Select(ab => new MyBooksViewModel
+                {
+                    Id = ab.Book.Id,
+                    Title = ab.Book.Title,
+                    Author = ab.Book.Author,
+                    Description = ab.Book.Description,
+                    Category = ab.Book.Category.Name,
+                    ImageUrl = ab.Book.ImageUrl
+                })
+                .ToListAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToCollection(int id)
+        {
+            var book = await dbContext.Books.FindAsync(id);
+
+            if(book == null)
+            {
+                return BadRequest();
+            }
+
+            var userBook = new ApplicationUserBook
+            {
+                ApplicationUserId = GetUserId(),
+                BookId = id,
+            };
+
+            //if (!dbContext.ApplicationUserBooks.Any(ab => ab.BookId == book.Id && ab.ApplicationUserId == GetUserId()))
+            //{
+            //    await dbContext.ApplicationUserBooks.AddAsync(userBook);
+            //    await dbContext.SaveChangesAsync();
+            //}
+
+            if (!await dbContext.ApplicationUserBooks.ContainsAsync(userBook))
+            {
+                await dbContext.ApplicationUserBooks.AddAsync(userBook);
+                await dbContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCollection(int id)
+        {
+            var book = await dbContext.Books
+                .FindAsync(id);
+
+            if(book == null)
+            {
+                return BadRequest();
+            }
+
+            var applicationUserBook = dbContext.ApplicationUserBooks
+                .FirstOrDefault(ab => ab.ApplicationUserId == GetUserId() && ab.BookId == book.Id);
+
+            if (applicationUserBook == null)
+            {
+                return BadRequest();
+            }
+
+            dbContext.Remove(applicationUserBook);
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Mine));
         }
 
         [HttpGet]
@@ -80,6 +158,11 @@ namespace Library.Controllers
                     Name = c.Name
                 })
                 .ToListAsync ();
+        }
+
+        private string GetUserId()
+        {
+            return User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }
     }
 }
