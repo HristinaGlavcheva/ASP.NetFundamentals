@@ -92,8 +92,7 @@ namespace Library.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Page(
-                        "/Identity/Account/Login");
+            returnUrl ??= Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
@@ -105,6 +104,7 @@ namespace Library.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    return RedirectToPage("./Login");
                         await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
